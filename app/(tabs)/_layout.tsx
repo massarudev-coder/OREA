@@ -1,35 +1,33 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
+import { Tabs } from "expo-router";
+import FontAwesome from '@expo/vector-icons/FontAwesome';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
+export default function RootTabsLayout() {
+    return (
+        <Tabs screenOptions={{
+            tabBarActiveBackgroundColor: '#0105fe',
+            tabBarActiveTintColor: '#ffffff',
 
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
+            tabBarInactiveBackgroundColor: '#342298fe',
+            tabBarInactiveTintColor: '#c69aff',
 
-  return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
-    </Tabs>
-  );
+            tabBarStyle: {
+                height: 65,
+                },
+                tabBarLabelStyle:{
+                    fontSize: 15,
+                    // algo nada
+                }
+            
+        }}>
+            <Tabs.Screen name="index" options={{ 
+                title: "Início" ,
+                tabBarIcon:(({color})=>(<FontAwesome name="home" size={24} color={color} />))
+                }} />
+            <Tabs.Screen name="contatos" options={{ 
+                title: "Contatos" ,
+                tabBarIcon:(({color})=>(<MaterialIcons name="contact-support" size={24} color={color} />))
+            }} />
+        </Tabs>
+    )
 }

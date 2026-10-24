@@ -1,24 +1,26 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
+import { Stack, useRouter } from "expo-router";
+import { Button } from "react-native";
 
-import { useColorScheme } from '@/hooks/use-color-scheme';
+export default function RootStackLayout() {
 
-export const unstable_settings = {
-  anchor: '(tabs)',
-};
+    const router = useRouter();
 
-export default function RootLayout() {
-  const colorScheme = useColorScheme();
-
-  return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
-  );
+    return (
+        <Stack screenOptions={{
+            headerShown: false,
+            headerStyle: {
+                backgroundColor: '#072543', // Cor de fundo do cabeçalho
+            },
+            headerTintColor: '#ffffff', // Cor do texto do cabeçalho
+            headerTitleAlign: 'center', // Alinhamento do texto do cabeçalho
+        }}>
+            <Stack.Screen name="inicio" options={{
+                title: "Home",
+                headerRight: () => <Button title="Ir para Tabs" onPress={() => router.push("/(tabs)/contatos")} />
+            }} />
+            <Stack.Screen name="auth/login" options={{
+                title: 'Tela de Login'
+            }} />
+        </Stack >
+    );
 }
