@@ -144,6 +144,7 @@ const styles = StyleSheet.create({
     scrollContent: {
         flexGrow: 1,
         paddingHorizontal: 5,
+        paddingVertical:5,
     },
 
     imageSection: {
@@ -245,23 +246,26 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         alignItems: 'center',
         borderWidth: 1,
-        borderColor: 'rgba(255, 255, 255, 0.65)',
+        borderColor: 'rgb(158, 134, 0)',
         borderRadius: 8,
         backgroundColor: 'rgba(15, 10, 31, 0.85)',
     },
 
     sizeButtonSelected: {
-        backgroundColor: '#001aff',
-        borderColor: '#ffffff',
+        backgroundColor: '#08169a',
+        borderColor: '#ffa601',
     },
 
     sizeButtonText: {
-        color: '#fff',
+        color: '#ffffff',
         fontWeight: '600',
+        height:40,
+        alignContent:'center',
     },
 
     sizeButtonTextSelected: {
         color: '#fff',
+        alignContent:'center',
     },
 
     buySection: {
@@ -271,7 +275,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 16,
         paddingVertical: 16,
         backgroundColor: 'rgba(15, 10, 31, 0.85)',
-        height: '15%',
+        height: '12%',
         marginTop: 5,
         borderRadius: 15,
         borderWidth: 3,
@@ -285,10 +289,12 @@ const styles = StyleSheet.create({
     },
 
     buyButton: {
-        backgroundColor: '#007BFF',
+        backgroundColor: '#08169a',
         paddingHorizontal: 24,
         paddingVertical: 12,
         borderRadius: 8,
+        borderColor: 'rgb(158, 134, 0)',
+        borderWidth:1,
     },
 
     buyButtonText: {
