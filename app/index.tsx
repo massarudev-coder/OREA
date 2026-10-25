@@ -1,5 +1,10 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
+import StateHome from '../seState/screens/Home/Home';
+
+// export default function App() {
+//   return <StateHome />;
+// }
 
 export default function Home() {
 
