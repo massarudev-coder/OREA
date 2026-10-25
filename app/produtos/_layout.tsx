@@ -1,10 +1,10 @@
 import { Stack } from "expo-router";
-import { Button } from "react-native";
+import { Pressable } from "react-native";
+import { useState } from "react";
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 
 export default function RootStackLayout() {
-
-    // const router = useRouter();
+    const [favoritado, setFavoritado] = useState(false);
 
     return (
         <Stack screenOptions={{
@@ -14,7 +14,20 @@ export default function RootStackLayout() {
             headerTintColor: 'rgb(0, 0, 0)', // Cor do texto do cabeçalho
             headerTitleAlign: 'center', // Alinhamento do texto do cabeçalho
             headerRight: () => (
-                <FontAwesome name="heart-o" size={24} color="black" style={{ marginRight: 12 }}/> 
+                <Pressable
+                    onPress={() => setFavoritado((atual) => !atual)}
+                    accessibilityRole="button"
+                    accessibilityLabel={favoritado ? "Remover dos favoritos" : "Adicionar aos favoritos"}
+                    accessibilityState={{ selected: favoritado }}
+                    hitSlop={10}
+                    style={{ marginRight: 12 }}
+                >
+                    <FontAwesome
+                        name={favoritado ? "heart" : "heart-o"}
+                        size={24}
+                        color={favoritado ? "red" : "black"}
+                    />
+                </Pressable>
             ),
         }}>
         </Stack >
