@@ -16,7 +16,7 @@ export default function RootStackLayout() {
         }}>
             <Stack.Screen name="inicio" options={{
                 title: "Home",
-                headerRight: () => <Button title="Ir para Tabs" onPress={() => router.push("/(tabs)/contatos")} />
+                headerRight: () => <Button title="Ir para Tabs" onPress={() => router.back()} />
             }} />
             <Stack.Screen name="auth/login" options={{
                 title: 'Tela de Login'
