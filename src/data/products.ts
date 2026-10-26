@@ -6,13 +6,7 @@ const description =
 const imageUrl =
     'https://www.fundacaomatiasmachline.org.br/wp-content/uploads/2020/07/IMG_0709-300x200.jpg';
 
-const productPlaceholder = (number: number): ProductData => ({
-    name: `Produto ${number}`,
-    support: 'Preencha as informações deste produto',
-    description: 'Adicione aqui a descrição deste produto.',
-    rating: 'Sem avaliações',
-    price: 'Preço a definir',
-});
+
 
 export const products = {
     produto_1: {
@@ -79,9 +73,4 @@ export const products = {
         price: 'R$ -299,90',
         imageUrl,
     },
-    // produto_4: productPlaceholder(4),
-    // produto_5: productPlaceholder(5),
-    // produto_6: productPlaceholder(6),
-    // produto_7: productPlaceholder(7),
-    // produto_8: productPlaceholder(8),
 } satisfies Record<string, ProductData>;
