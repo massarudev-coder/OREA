@@ -1,12 +1,5 @@
 import { useState } from 'react';
-import {
-    Image,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
-} from 'react-native';
+import { Image,ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import type { ProductData } from '../../types/product';
 
