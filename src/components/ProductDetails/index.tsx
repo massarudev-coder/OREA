@@ -1,7 +1,17 @@
 import { useState } from 'react';
-import { Image,ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import type { ProductData } from '../../types/product';
+
+const colors = {
+    background: '#060511',
+    panel: 'rgba(28, 16, 51, 0.75)',
+    input: 'rgba(15, 10, 31, 0.85)',
+    gold: '#E5C158',
+    muted: '#A29BB8',
+    text: '#F5F1FF',
+    border: 'rgba(229, 193, 88, 0.22)',
+};
 
 type ProductDetailsProps = {
     product: ProductData;
@@ -63,7 +73,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
                         <Text style={styles.productSupport}>{product.support}</Text>
                     </View>
                     <View style={styles.rating}>
-                        <FontAwesome name="star" size={25} color="#f5a623" />
+                        <FontAwesome name="star" size={20} color={colors.gold} />
                         <Text style={styles.ratingText}>{product.rating}</Text>
                     </View>
                 </View>
@@ -135,7 +145,9 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
                         descriptionExpanded && { height: availableHeight * 0.12 },
                     ]}
                 >
-                    <Text style={styles.price}>{product.price}</Text>
+                    <Text style={styles.price}>
+                        $ {product.price.toFixed(2)}
+                    </Text>
                     <TouchableOpacity
                         style={styles.buyButton}
                         accessibilityRole="button"
@@ -151,57 +163,57 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#030527',
+        backgroundColor: colors.background,
     },
     scrollContent: {
         flexGrow: 1,
-        paddingHorizontal: 5,
-        paddingVertical: 5,
+        paddingHorizontal: 12,
+        paddingVertical: 12,
     },
     imageSection: {
         width: '100%',
         height: '45%',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'rgba(15, 10, 31, 0.85)',
-        borderRadius: 15,
+        backgroundColor: colors.panel,
+        borderRadius: 20,
         overflow: 'hidden',
-        borderWidth: 3,
-        borderColor: 'rgb(40, 2, 152)',
+        borderWidth: 1,
+        borderColor: colors.border,
     },
     image: {
         width: '100%',
         height: '100%',
     },
     imagePlaceholder: {
-        color: '#fff',
+        color: colors.muted,
     },
     infoRow: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingHorizontal: 16,
-        paddingVertical: 15,
-        backgroundColor: 'rgba(15, 10, 31, 0.85)',
+        paddingHorizontal: 18,
+        paddingVertical: 14,
+        backgroundColor: colors.panel,
         height: '10%',
-        marginTop: 5,
-        borderRadius: 15,
-        borderWidth: 3,
-        borderColor: 'rgb(40, 2, 152)',
+        marginTop: 10,
+        borderRadius: 18,
+        borderWidth: 1,
+        borderColor: colors.border,
     },
     productInfo: {
         flex: 1,
     },
     productName: {
-        fontSize: 20,
+        fontSize: 19,
         fontWeight: 'bold',
         textTransform: 'uppercase',
-        color: '#fff',
+        color: colors.text,
     },
     productSupport: {
         fontSize: 13,
-        color: '#fff',
-        marginTop: 10,
+        color: colors.muted,
+        marginTop: 6,
     },
     rating: {
         flexDirection: 'row',
@@ -209,37 +221,40 @@ const styles = StyleSheet.create({
         gap: 4,
     },
     ratingText: {
-        color: '#fff',
+        color: colors.text,
     },
     descriptionSection: {
-        paddingHorizontal: 16,
-        paddingVertical: 10,
-        backgroundColor: 'rgba(15, 10, 31, 0.85)',
+        paddingHorizontal: 18,
+        paddingVertical: 14,
+        backgroundColor: colors.panel,
         height: '15%',
-        marginTop: 5,
-        borderRadius: 15,
-        borderWidth: 3,
-        borderColor: 'rgb(40, 2, 152)',
+        marginTop: 10,
+        borderRadius: 18,
+        borderWidth: 1,
+        borderColor: colors.border,
     },
     descriptionText: {
-        color: '#fff',
+        color: colors.text,
+        lineHeight: 21,
     },
     readMore: {
-        color: '#fff',
+        color: colors.gold,
         fontWeight: 'bold',
+        marginTop: 5,
     },
     optionsSection: {
-        paddingHorizontal: 16,
-        paddingVertical: 10,
-        backgroundColor: 'rgba(15, 10, 31, 0.85)',
+        paddingHorizontal: 18,
+        paddingVertical: 14,
+        backgroundColor: colors.panel,
         height: '15%',
-        marginTop: 5,
-        borderRadius: 15,
-        borderWidth: 3,
-        borderColor: 'rgb(40, 2, 152)',
+        marginTop: 10,
+        borderRadius: 18,
+        borderWidth: 1,
+        borderColor: colors.border,
     },
     optionsTitle: {
-        color: '#fff',
+        color: colors.text,
+        fontWeight: '600',
     },
     sizeOptions: {
         flexDirection: 'row',
@@ -251,50 +266,49 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         alignItems: 'center',
         borderWidth: 1,
-        borderColor: 'rgb(158, 134, 0)',
-        borderRadius: 8,
-        backgroundColor: 'rgba(15, 10, 31, 0.85)',
+        borderColor: 'rgba(229, 193, 88, 0.45)',
+        borderRadius: 12,
+        backgroundColor: colors.input,
     },
     sizeButtonSelected: {
-        backgroundColor: '#08169a',
-        borderColor: '#ffa601',
+        backgroundColor: colors.gold,
+        borderColor: colors.gold,
     },
     sizeButtonText: {
-        color: '#fff',
+        color: colors.text,
         fontWeight: '600',
-        height: 40,
+        height: 36,
         textAlignVertical: 'center',
     },
     sizeButtonTextSelected: {
-        color: '#fff',
+        color: colors.background,
     },
     buySection: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingHorizontal: 16,
-        paddingVertical: 16,
-        backgroundColor: 'rgba(15, 10, 31, 0.85)',
+        paddingHorizontal: 18,
+        paddingVertical: 14,
+        backgroundColor: colors.panel,
         height: '12%',
-        marginTop: 5,
-        borderRadius: 15,
-        borderWidth: 3,
-        borderColor: 'rgb(40, 2, 152)',
+        marginTop: 10,
+        borderRadius: 18,
+        borderWidth: 1,
+        borderColor: colors.border,
     },
     price: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: '#fff',
+        color: colors.text,
     },
     buyButton: {
-        backgroundColor: '#08169a',
+        backgroundColor: colors.gold,
         paddingHorizontal: 24,
         paddingVertical: 12,
-        borderRadius: 8,
-        borderColor: 'rgb(158, 134, 0)',
-        borderWidth: 1,
+        borderRadius: 12,
     },
     buyButtonText: {
-        color: '#fff',
+        color: colors.background,
+        fontWeight: '700',
     },
 });

@@ -1,50 +1,41 @@
-# Welcome to your Expo app 👋
+# Oreas
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Aplicativo de demonstração de uma loja de meteoritos, desenvolvido com Expo, React Native e Expo Router.
 
-## Get started
-
-1. Install dependencies
-
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+## Executar
 
 ```bash
-npm run reset-project
+npm install
+npx expo start
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Para validar o projeto:
 
-## Learn more
+```bash
+npx expo lint
+npx tsc --noEmit
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+## Estrutura
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```text
+app/
+  (tabs)/             Catálogo e abas da loja
+  produtos/           Rotas de detalhes dos produtos
+  _layout.tsx          Navegação raiz
+  index.tsx            Redirecionamento inicial para o login
+  login.tsx            Tela de login demonstrativa
+src/
+  components/          Componentes reutilizáveis
+  data/                Dados do catálogo
+  types/               Tipos compartilhados
+```
 
-## Join the community
+O Expo Router usa arquivos dentro de `app/` como rotas. Por isso, `app/index.tsx` e `app/(tabs)/index.tsx` são pontos de entrada, não arquivos duplicados. As oito telas em `app/produtos/` também são rotas distintas e reutilizam o componente de detalhes em `src/components/ProductDetails/`.
 
-Join our community of developers creating universal apps.
+## Fluxo atual
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- A rota inicial abre o login.
+- O login é somente demonstrativo: qualquer e-mail e senha não vazios permitem acessar a loja.
+- A vitrine apresenta busca, filtros de categoria e navegação para os detalhes.
+- Favoritos, carrinho e perfil ainda são telas demonstrativas; não há persistência de dados nem autenticação conectada a um serviço.
