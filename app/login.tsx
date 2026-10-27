@@ -13,69 +13,82 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function Login() {
-    const router = useRouter();
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [showPassword, setShowPassword] = useState(false);
-    const [notice, setNotice] = useState("");
+const emailCadastradoFMS = "teste@meteoros.com";
+const senhaCadastradaFMS = "Meteoros123";
 
-    function handleLogin() {
-        if (!email.trim() || !password) {
-            setNotice("Preencha seu e-mail e sua senha para continuar.");
+export default function LoginFMS() {
+    const routerFMS = useRouter();
+    const [emailFMS, setEmailFMS] = useState("");
+    const [passwordFMS, setPasswordFMS] = useState("");
+    const [showPasswordFMS, setShowPasswordFMS] = useState(false);
+    const [noticeFMS, setNoticeFMS] = useState("");
+
+    function verificarLoginFMS() {
+        if (!emailFMS.trim() || !passwordFMS.trim()) {
+            setNoticeFMS("Preencha seu e-mail e sua senha para continuar.");
             return;
         }
 
-        router.replace("/(tabs)");
+        if (emailFMS.trim().toLowerCase() !== emailCadastradoFMS) {
+            setNoticeFMS("E-mail incorreto. Confira o endereço e tente novamente.");
+            return;
+        }
+
+        if (passwordFMS !== senhaCadastradaFMS) {
+            setNoticeFMS("Senha incorreta. Confira sua senha e tente novamente.");
+            return;
+        }
+
+        routerFMS.replace("/(tabs)");
     }
 
     return (
-        <SafeAreaView style={styles.safeArea}>
+        <SafeAreaView style={stylesFMS.safeArea}>
             <KeyboardAvoidingView
-                style={styles.flex}
+                style={stylesFMS.flex}
                 behavior={Platform.OS === "ios" ? "padding" : undefined}
             >
                 <ScrollView
-                    contentContainerStyle={styles.scrollContent}
+                    contentContainerStyle={stylesFMS.scrollContent}
                     keyboardShouldPersistTaps="handled"
                 >
-                    <View style={styles.container}>
-                        <View style={styles.brand}>
-                            <View style={styles.brandIcon}>
-                                <MaterialIcons name="auto-awesome" size={21} color={colors.gold} />
+                    <View style={stylesFMS.container}>
+                        <View style={stylesFMS.brand}>
+                            <View style={stylesFMS.brandIcon}>
+                                <MaterialIcons name="auto-awesome" size={21} color={colorsFMS.gold} />
                             </View>
                             <View>
-                                <Text style={styles.brandName}>OREA</Text>
-                                <Text style={styles.brandSubtitle}>COSMIC VAULT</Text>
+                                <Text style={stylesFMS.brandName}>OREA</Text>
+                                <Text style={stylesFMS.brandSubtitle}>COSMIC VAULT</Text>
                             </View>
                         </View>
 
-                        <View style={styles.heading}>
-                            <Text style={styles.eyebrow}>ACESSO AO OBSERVATÓRIO</Text>
-                            <Text style={styles.title}>Bem-vindo de volta</Text>
-                            <Text style={styles.subtitle}>
+                        <View style={stylesFMS.heading}>
+                            <Text style={stylesFMS.eyebrow}>ACESSO AO OBSERVATÓRIO</Text>
+                            <Text style={stylesFMS.title}>Bem-vindo de volta</Text>
+                            <Text style={stylesFMS.subtitle}>
                                 Entre para explorar uma coleção verdadeiramente fora deste mundo.
                             </Text>
                         </View>
 
-                        <View style={styles.formCard}>
-                            <View style={styles.form}>
-                                <Text style={styles.label}>E-mail</Text>
-                                <View style={styles.inputWrapper}>
+                        <View style={stylesFMS.formCard}>
+                            <View style={stylesFMS.form}>
+                                <Text style={stylesFMS.label}>E-mail</Text>
+                                <View style={stylesFMS.inputWrapper}>
                                     <MaterialIcons
                                         name="mail-outline"
                                         size={21}
-                                        color={colors.muted}
+                                        color={colorsFMS.muted}
                                     />
                                     <TextInput
                                         accessibilityLabel="E-mail"
-                                        style={styles.input}
+                                        style={stylesFMS.input}
                                         placeholder="voce@exemplo.com"
-                                        placeholderTextColor={colors.muted}
-                                        value={email}
-                                        onChangeText={(value) => {
-                                            setEmail(value);
-                                            setNotice("");
+                                        placeholderTextColor={colorsFMS.muted}
+                                        value={emailFMS}
+                                        onChangeText={(valueFMS) => {
+                                            setEmailFMS(valueFMS);
+                                            setNoticeFMS("");
                                         }}
                                         keyboardType="email-address"
                                         autoCapitalize="none"
@@ -85,89 +98,91 @@ export default function Login() {
                                     />
                                 </View>
 
-                                <View style={styles.passwordLabelRow}>
-                                    <Text style={styles.label}>Senha</Text>
+                                <View style={stylesFMS.passwordLabelRow}>
+                                    <Text style={stylesFMS.label}>Senha</Text>
                                     <Pressable
                                         accessibilityRole="button"
                                         onPress={() =>
-                                            setNotice("A recuperação de senha ainda não está configurada.")
+                                            setNoticeFMS("A recuperação de senha ainda não está configurada.")
                                         }
                                     >
-                                        <Text style={styles.textLink}>Esqueceu a senha?</Text>
+                                        <Text style={stylesFMS.textLink}>Esqueceu a senha?</Text>
                                     </Pressable>
                                 </View>
-                                <View style={styles.inputWrapper}>
+                                <View style={stylesFMS.inputWrapper}>
                                     <MaterialIcons
                                         name="lock-outline"
                                         size={21}
-                                        color={colors.muted}
+                                        color={colorsFMS.muted}
                                     />
                                     <TextInput
                                         accessibilityLabel="Senha"
-                                        style={styles.input}
+                                        style={stylesFMS.input}
                                         placeholder="Digite sua senha"
-                                        placeholderTextColor={colors.muted}
-                                        value={password}
-                                        onChangeText={(value) => {
-                                            setPassword(value);
-                                            setNotice("");
+                                        placeholderTextColor={colorsFMS.muted}
+                                        value={passwordFMS}
+                                        onChangeText={(valueFMS) => {
+                                            setPasswordFMS(valueFMS);
+                                            setNoticeFMS("");
                                         }}
-                                        secureTextEntry={!showPassword}
+                                        secureTextEntry={!showPasswordFMS}
                                         textContentType="password"
                                         returnKeyType="done"
-                                        onSubmitEditing={handleLogin}
+                                        onSubmitEditing={verificarLoginFMS}
                                     />
                                     <Pressable
                                         accessibilityRole="button"
-                                        accessibilityLabel={showPassword ? "Ocultar senha" : "Mostrar senha"}
+                                        accessibilityLabel={showPasswordFMS ? "Ocultar senha" : "Mostrar senha"}
                                         hitSlop={10}
-                                        onPress={() => setShowPassword((visible) => !visible)}
+                                        onPress={() =>
+                                            setShowPasswordFMS((visibleFMS) => !visibleFMS)
+                                        }
                                     >
                                         <MaterialIcons
-                                            name={showPassword ? "visibility-off" : "visibility"}
+                                            name={showPasswordFMS ? "visibility-off" : "visibility"}
                                             size={21}
-                                            color={colors.muted}
+                                            color={colorsFMS.muted}
                                         />
                                     </Pressable>
                                 </View>
 
-                                {notice ? (
-                                    <Text accessibilityLiveRegion="polite" style={styles.notice}>
-                                        {notice}
+                                {noticeFMS ? (
+                                    <Text accessibilityLiveRegion="polite" style={stylesFMS.notice}>
+                                        {noticeFMS}
                                     </Text>
                                 ) : null}
 
                                 <Pressable
                                     accessibilityRole="button"
-                                    style={({ pressed }) => [
-                                        styles.loginButton,
-                                        pressed && styles.loginButtonPressed,
+                                    style={({ pressed: pressedFMS }) => [
+                                        stylesFMS.loginButton,
+                                        pressedFMS && stylesFMS.loginButtonPressed,
                                     ]}
-                                    onPress={handleLogin}
+                                    onPress={verificarLoginFMS}
                                 >
-                                    <Text style={styles.loginButtonText}>Entrar na loja</Text>
+                                    <Text style={stylesFMS.loginButtonText}>Entrar na loja</Text>
                                     <MaterialIcons
                                         name="arrow-forward"
                                         size={20}
-                                        color={colors.background}
+                                        color={colorsFMS.background}
                                     />
                                 </Pressable>
 
-                                <View style={styles.footer}>
-                                    <Text style={styles.footerText}>Ainda não tem uma conta? </Text>
+                                <View style={stylesFMS.footer}>
+                                    <Text style={stylesFMS.footerText}>Ainda não tem uma conta? </Text>
                                     <Pressable
                                         accessibilityRole="button"
                                         onPress={() =>
-                                            setNotice("O cadastro ainda não está configurado.")
+                                            setNoticeFMS("O cadastro ainda não está configurado.")
                                         }
                                     >
-                                        <Text style={styles.footerLink}>Criar conta</Text>
+                                        <Text style={stylesFMS.footerLink}>Criar conta</Text>
                                     </Pressable>
                                 </View>
                             </View>
                         </View>
-                        <Text style={styles.demoNote}>
-                            Acesso demonstrativo · use qualquer e-mail e senha
+                        <Text style={stylesFMS.demoNote}>
+                            Acesso demonstrativo · use o e-mail e a senha cadastrados
                         </Text>
                     </View>
                 </ScrollView>
@@ -176,7 +191,7 @@ export default function Login() {
     );
 }
 
-const colors = {
+const colorsFMS = {
     background: "#060511",
     panel: "rgba(28, 16, 51, 0.75)",
     input: "rgba(15, 10, 31, 0.85)",
@@ -185,10 +200,10 @@ const colors = {
     text: "#F5F1FF",
 };
 
-const styles = StyleSheet.create({
+const stylesFMS = StyleSheet.create({
     safeArea: {
         flex: 1,
-        backgroundColor: colors.background,
+        backgroundColor: colorsFMS.background,
     },
     flex: {
         flex: 1,
@@ -214,20 +229,20 @@ const styles = StyleSheet.create({
         width: 46,
         height: 46,
         borderRadius: 16,
-        backgroundColor: colors.panel,
+        backgroundColor: colorsFMS.panel,
         borderWidth: 1,
         borderColor: "rgba(229, 193, 88, 0.35)",
         alignItems: "center",
         justifyContent: "center",
     },
     brandName: {
-        color: colors.gold,
+        color: colorsFMS.gold,
         fontSize: 19,
         fontWeight: "700",
         letterSpacing: 2,
     },
     brandSubtitle: {
-        color: colors.muted,
+        color: colorsFMS.muted,
         fontSize: 9,
         fontWeight: "600",
         letterSpacing: 2,
@@ -237,27 +252,27 @@ const styles = StyleSheet.create({
         marginBottom: 26,
     },
     eyebrow: {
-        color: colors.gold,
+        color: colorsFMS.gold,
         fontSize: 10,
         fontWeight: "700",
         letterSpacing: 2,
         marginBottom: 12,
     },
     title: {
-        color: colors.text,
+        color: colorsFMS.text,
         fontSize: 32,
         fontWeight: "700",
         letterSpacing: -0.8,
         lineHeight: 39,
     },
     subtitle: {
-        color: colors.muted,
+        color: colorsFMS.muted,
         fontSize: 14,
         lineHeight: 23,
         marginTop: 10,
     },
     formCard: {
-        backgroundColor: colors.panel,
+        backgroundColor: colorsFMS.panel,
         borderWidth: 1,
         borderColor: "rgba(229, 193, 88, 0.22)",
         borderRadius: 22,
@@ -267,7 +282,7 @@ const styles = StyleSheet.create({
         gap: 12,
     },
     label: {
-        color: colors.text,
+        color: colorsFMS.text,
         fontSize: 13,
         fontWeight: "600",
         marginBottom: 1,
@@ -279,7 +294,7 @@ const styles = StyleSheet.create({
         marginTop: 8,
     },
     textLink: {
-        color: colors.gold,
+        color: colorsFMS.gold,
         fontSize: 11,
         fontWeight: "600",
     },
@@ -292,12 +307,12 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: "rgba(229, 193, 88, 0.18)",
         borderRadius: 14,
-        backgroundColor: colors.input,
+        backgroundColor: colorsFMS.input,
     },
     input: {
         flex: 1,
         minWidth: 0,
-        color: colors.text,
+        color: colorsFMS.text,
         fontSize: 14,
         paddingVertical: 14,
     },
@@ -313,7 +328,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         gap: 9,
-        backgroundColor: colors.gold,
+        backgroundColor: colorsFMS.gold,
         borderRadius: 14,
         marginTop: 8,
     },
@@ -321,7 +336,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#F0D88B",
     },
     loginButtonText: {
-        color: colors.background,
+        color: colorsFMS.background,
         fontSize: 14,
         fontWeight: "700",
     },
@@ -333,16 +348,16 @@ const styles = StyleSheet.create({
         marginTop: 18,
     },
     footerText: {
-        color: colors.muted,
+        color: colorsFMS.muted,
         fontSize: 12,
     },
     footerLink: {
-        color: colors.gold,
+        color: colorsFMS.gold,
         fontSize: 12,
         fontWeight: "700",
     },
     demoNote: {
-        color: colors.muted,
+        color: colorsFMS.muted,
         fontSize: 11,
         textAlign: "center",
         marginTop: 18,
